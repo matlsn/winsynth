@@ -15,7 +15,7 @@ const say = options => {
   if (!options.emitter && options.cutoff) throw new Error('Emitter required for winsynth.say() if cutoff option is true!')
   if (typeof options.rate !== 'number' || ((options.rate < 0) || (options.rate > 2))) throw new Error('Rate must be a number between 0-2!')
   if (typeof options.volume !== 'number' || ((options.volume < 0) || (options.volume > 100))) throw new Error('Volume must be a number between 0-100!')
-  if (typeof options.voice !== 'string' || (['Microsoft Zira Desktop', 'Microsoft David Desktop'].includes(options.voice))) throw new Error('Voice must be a valid SAPI voice! [Microsoft Zira Desktop, Microsoft David Desktop]')
+  if (typeof options.voice !== 'string' || (!['Microsoft Zira Desktop', 'Microsoft David Desktop'].includes(options.voice))) throw new Error('Voice must be a valid SAPI voice! [Microsoft Zira Desktop, Microsoft David Desktop]')
   if (typeof options.cutoff !== 'boolean') throw new Error('Cutoff must be a boolean!')
 
   let command = 'Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;'
