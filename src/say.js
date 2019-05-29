@@ -21,7 +21,7 @@ const say = options => {
   let command = 'Add-Type -AssemblyName System.speech;$speak = New-Object System.Speech.Synthesis.SpeechSynthesizer;'
   if (options.speaking) cp.exec(`taskkill /pid ${options.speaking} /T /F`)
   return new Promise((resolve, reject) => {
-    command += `$speak.SelectVoice('${options.voice}');$speak.Rate('${options.rate}');$speak.Volume('${options.volume}');$speak.Speak([Console]::In.ReadToEnd());`
+    command += `$speak.SelectVoice('${options.voice}');$speak.Rate = ${Math.max(-10, Math.min(Math.round((9.0686 * Math.log(options.rate)) - 0.1806), 10))};$speak.Volume = ${options.volume};$speak.Speak([Console]::In.ReadToEnd());`
     
     const process = cp.spawn('powershell', [command], { 'shell': true })
     process.stdin.setEncoding('ascii')
