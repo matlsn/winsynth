@@ -8,7 +8,7 @@ Simple and tiny (< 2kb) node module for synthesizing speech through `powershell`
 
 ```js
   // Example for speech synthesis that cuts itself off
-  const synth = require('@matlsn/winsynth')
+  const synth = require('@mn6/winsynth')
   const events = require('events')
   const emitter = new events.EventEmitter()
   let speaking = null
